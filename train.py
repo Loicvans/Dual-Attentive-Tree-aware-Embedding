@@ -79,8 +79,8 @@ def train(args):
                                     fusion_type=fusion,act=act,device=device,\
                                     use_self=use_self,agg_type=agg,
                                     ).to(device)
-    model = nn.DataParallel(model,device_ids=[0,1])
-
+    # model = nn.DataParallel(model,device_ids=[0,1])
+    model = nn.DataParallel(model, device_ids=(0,)).cuda()
     # initialize parameters
     for p in model.parameters():
         if p.dim() > 1:
